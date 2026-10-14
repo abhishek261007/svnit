@@ -6,11 +6,13 @@
   "scripts": {
     "start": "tsx src/server.ts",
     "start:cli": "tsx src/index.ts",
+    "dev:pages": "wrangler pages dev public --ip 127.0.0.1",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "wrangler": "^4.0.0"
   }
 }
