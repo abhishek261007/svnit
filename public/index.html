@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101c35">
+    <title>SVNIT Attendance</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section id="login-view" class="login-card">
+        <div class="brand-mark">S</div>
+        <p class="eyebrow">SVNIT · STUDENT PORTAL</p>
+        <h1>Your attendance,<br><span>at a glance.</span></h1>
+        <p class="muted">Sign in with your MIS account. Your password is sent securely to the MIS server and is never saved by this app.</p>
+        <form id="login-form">
+          <label for="username">Registration / MIS username</label>
+          <input id="username" name="username" autocomplete="username" required>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+          <button class="button primary full" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        </form>
+        <p id="login-error" class="error" role="alert"></p>
+        <p class="fine-print">Local app · read-only attendance access · credentials are not stored</p>
+      </section>
+
+      <section id="dashboard-view" class="dashboard hidden">
+        <header class="topbar">
+          <a class="brand" href="/" aria-label="SVNIT Attendance home"><span class="brand-mark small">S</span><span>svnit<span class="brand-light">/attendance</span></span></a>
+          <div class="user-area"><span id="user-name" class="user-name"></span><button id="logout-button" class="button subtle" type="button">Sign out</button></div>
+        </header>
+
+        <section class="welcome-row">
+          <div><p class="eyebrow">STUDENT DASHBOARD</p><h1>Attendance overview</h1><p id="student-meta" class="muted">Your MIS attendance data</p></div>
+          <div id="overall-card" class="overall-card"><span class="overall-label">OVERALL ATTENDANCE</span><strong id="overall-value">—</strong><span id="overall-detail">Loading attendance…</span></div>
+        </section>
+
+        <div id="app-error" class="notice hidden" role="alert"></div>
+        <section class="section-block">
+          <div class="section-heading"><div><p class="eyebrow">BY COURSE</p><h2>Subject attendance</h2></div><button id="refresh-button" class="button subtle" type="button">↻ <span>Refresh</span></button></div>
+          <div id="summary-grid" class="summary-grid"><div class="loading-card">Loading your attendance…</div></div>
+        </section>
+
+        <section id="history-section" class="history-panel hidden">
+          <div class="section-heading history-heading"><div><p class="eyebrow">CLASS RECORD</p><h2 id="history-title">Attendance by date</h2><p id="history-meta" class="muted"></p></div><button id="close-history" class="button subtle" type="button" aria-label="Close subject detail">Close</button></div>
+          <div class="filters"><label>From <input id="date-from" type="date"></label><label>To <input id="date-to" type="date"></label><button id="clear-dates" class="button subtle" type="button">Clear dates</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Date</th><th>Period</th><th>Status</th></tr></thead><tbody id="history-rows"></tbody></table></div>
+          <p id="history-empty" class="empty-state hidden">No attendance entries for this date range.</p>
+        </section>
+        <footer>Attendance information is provided by the SVNIT MIS server.</footer>
+      </section>
+    </main>
+  </body>
+</html>
