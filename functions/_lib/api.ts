@@ -90,9 +90,17 @@ function fromBase64Url(value: string): Uint8Array {
 }
 
 async function encryptionKey(secret: string): Promise<CryptoKey> {
-  if (secret.length < 32) throw new HttpError(500, "SESSION_SECRET must be at least 32 characters.");
+  if (typeof secret !== "string" || secret.length < 32) {
+    throw new HttpError(500, "SESSION_SECRET is missing or too short. Add it as a Pages secret for this environment, then redeploy.");
+  }
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(secret));
   return crypto.subtle.importKey("raw", digest, "AES-GCM", false, ["encrypt", "decrypt"]);
+}
+
+export function validateSessionSecret(secret: string | undefined): asserts secret is string {
+  if (typeof secret !== "string" || secret.length < 32) {
+    throw new HttpError(500, "SESSION_SECRET is missing or too short. Add it as a Pages secret for this environment, then redeploy.");
+  }
 }
 
 export async function sealSession(user: UserInfo, secret: string): Promise<string> {

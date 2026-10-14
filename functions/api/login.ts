@@ -1,8 +1,9 @@
-import { handleError, json, misRequest, readJson, requireSameOrigin, sealSession, sessionCookie, type Env, type UserInfo } from "../_lib/api";
+import { handleError, json, misRequest, readJson, requireSameOrigin, sealSession, sessionCookie, validateSessionSecret, type Env, type UserInfo } from "../_lib/api";
 
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   try {
     requireSameOrigin(request);
+    validateSessionSecret(env.SESSION_SECRET);
     const body = await readJson(request);
     const username = typeof body.username === "string" ? body.username.trim() : "";
     const password = typeof body.password === "string" ? body.password : "";
