@@ -141,7 +141,6 @@ button { color: inherit; }
   transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 .summary-card:hover, .summary-card:focus-visible { transform: translateY(-1px); border-color: var(--slate-400); box-shadow: 0 7px 20px #0f172a0b; outline: none; }
-.summary-card::after { position: absolute; top: 15px; right: 15px; color: var(--slate-400); content: "↗"; }
 .course-code { color: var(--slate-500); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .course-name { min-height: 40px; margin: 8px 22px 14px 0; color: var(--slate-950); font-size: 14px; font-weight: 800; line-height: 1.4; }
 .card-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }

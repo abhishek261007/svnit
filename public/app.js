@@ -197,7 +197,7 @@ loginForm.addEventListener("submit", async (event) => {
     loginError.textContent = error.message || "Sign in failed.";
   } finally {
     button.disabled = false;
-    button.innerHTML = 'Sign in <span aria-hidden="true">→</span>';
+    button.textContent = "Sign in";
   }
 });
 
